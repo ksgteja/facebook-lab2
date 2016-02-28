@@ -1,0 +1,346 @@
+<br/>
+<body>
+
+  <div class="panel panel-default" ng-init = "hideAll()">
+
+    <div class="panel-heading"><span style = "font-size : 25px "class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;<span style = "font-size : 25px">About</span></div>
+    <div class="panel-body">
+      
+    <div class = "row">
+        
+    
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li class="active"><a href ng-click ="navigate(1)">Overview</a></li>
+              <li><a href ng-click ="navigate(2)">Work Education</a></li>
+              <li><a href ng-click ="navigate(3)">Contact Info</a></li>
+              <li><a href ng-click ="navigate(4)">Life Events</a></li>              
+            </ul>
+    
+            
+        </div>
+       
+
+        <div ng-show = "over" class = "col-md-9">
+           
+  
+        <div class="panel panel-default">
+            <div class= "panel-heading"> Current Work and Education </div>
+        <div class="panel-body">
+            
+            <table class ="table">
+            
+            <tr>
+                
+                <td ng-if = "currentWork">
+                
+                    <h3>{{currentwork.company}}</h3>
+                    <p>{{currentwork.position}} &nbsp; &nbsp; {{currentwork.workYear}}</p>
+                
+                </td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td ng-if ="currentEdu">
+                
+                   <h3>{{currentStudy.name}}</h3>
+                    <p>{{currentStudy.concentration}} &nbsp; &nbsp; {{currentStudy.year}}</p>
+                </td>
+                
+                </tr>
+            
+                
+                
+            </table>
+            
+            
+            </div>
+        </div>
+            
+            <div class="panel panel-default">
+            <div class= "panel-heading"> Contact Info </div>
+        <div class="panel-body">
+            
+            <table class ="table table-striped">
+            
+            <tr>
+                
+                <td>
+                
+                    <span class = "glyphicon glyphicon-phone-alt"></span>{{contacts.mobile}}
+                
+                </td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>
+                
+                   <span class = "glyphicon glyphicon-envelope"></span> {{contacts.email}}
+                
+                </td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>
+                    <span class = "glyphicon glyphicon-user"></span>{{contacts.dob}}
+                
+                </td>
+                
+                </tr>
+            
+                
+                
+            </table>
+            
+            
+            </div>
+        </div>
+            </div>
+            
+        
+        
+        <div ng-if = "work" class = "col-md-9">
+           
+            <table class = "table">
+                <thead>
+                    <h5 style = "color : #A8A8A8"><strong>WORK</strong></h5>
+                </thead>
+                <tbody>
+                <tr> 
+                    <td>
+                        <button ng-click = "add('work')" data-toggle="modal" data-target="#aboutModal" style = "color: blue; background : transparent; border : none"><span class= "glyphicon glyphicon-plus" ></span>Add a WorkPlace</button>
+                    </td>
+                
+                </tr>
+                    <tr ng-repeat = "w in works"> 
+                    <td>
+                        <H3 style ="color : #3B5998"><strong>{{w.company}}</strong></H3>
+                        <label>{{w.position}} - {{w.year}} - {{w.city}}</label>
+                    </td>
+                
+                </tr>
+                    </tbody>
+                
+            </table>
+            <table class = "table">
+                <thead>
+                    <h5 style = "color : #A8A8A8"><strong>College</strong></h5>
+                </thead>
+                <tbody>
+                <tr> 
+                    <td>
+                        <button ng-click = "add('college')" data-toggle="modal" data-target="#aboutModal" style = "color: blue; background : transparent; border : none"><span class= "glyphicon glyphicon-plus" ></span>Add a College</button>
+                    </td>
+                
+                </tr>
+                    <tr ng-repeat = "college in colleges"> 
+                    <td>
+                        <H3 style ="color : #3B5998"><strong>{{college.college_name}}</strong></H3>
+                        <label>{{college.concentration}}, {{college.attended}}, {{college.college_year}} </label>
+                    </td>
+                
+                </tr>
+                    </tbody>
+                
+            </table>
+            
+            <table class = "table">
+                <thead>
+                    <h5 style = "color : #A8A8A8"><strong>High School</strong></h5>
+                </thead>
+                <tbody>
+                <tr> 
+                    <td>
+                        <button data-toggle="modal" data-target="#aboutModal" ng-click = "add('highSchool')" style = "color: blue; background : transparent; border : none"><span class= "glyphicon glyphicon-plus" ></span>Add a High School</button>
+                    </td>
+                
+                </tr>
+                    <tr ng-repeat = "school in schools"> 
+                    <td>
+                        <H3 style ="color : #3B5998"><strong>{{school.school_name}}</strong></H3>
+                        <label>{{school.school_year}} </label>
+                    </td>
+                
+                </tr>
+                    </tbody>
+                
+            </table>
+            
+        </div>
+        
+        <div ng-if = "contact" class = "col-md-9">
+            
+            <h5 style = "color : #A8A8A8"><strong>CONTACT INFO</strong></h5><hr>
+             <div class="form-group form-inline">
+              <label style = "width : 150px">Mobile</label>
+                <input type="text" class="form-control" ng-model = "contacts.mobile" size="25px" ng-pattern = "^(\+?[01])?[-.\s]?\(?[1-9]\d{2}\)?[-.\s]?\d{3}[-.\s]?\d{4}">
+                
+                
+            </div>
+              
+              <div class="form-group form-inline">
+              <label style = "width : 150px">Address</label>
+                <textarea class="form-control" ng-model = "contacts.address" size="25px"></textarea>
+                
+                
+            </div>
+            
+            <div class="form-group form-inline">
+              <label style = "width : 150px">email</label>
+                <input type="text" class="form-control" ng-model = "contacts.email" size="25px" disabled>
+                
+                
+            </div><br>
+              <h5 style = "color : #A8A8A8"><strong>BASIC INFO</strong></h5><hr>
+              <div class="form-group form-inline">
+              <label style = "width : 150px">Birthday</label>
+                <input type="text" class="form-control" ng-model = "contacts.dob"  size="25px" disabled>
+                
+                
+            </div>
+            
+            <div class="form-group form-inline">
+              <label style = "width : 150px">Gender</label>
+                <input type="text" class="form-control" ng-model = "contacts.gender"  size="25px" disabled =true>
+                
+                
+            </div><br>
+              <h5 style = "color : #A8A8A8"><strong>INTERESTS</strong></h5><hr>
+            
+            <div class="form-group form-inline">
+              <label style = "width : 150px">Music</label>
+                <textarea class="form-control" ng-model = "contacts.music" size="25px"></textarea>
+                
+                
+            </div>
+            
+            <div class="form-group form-inline">
+              <label style = "width : 150px">Shows</label>
+                <textarea class="form-control" ng-model = "contacts.shows" size="25px"></textarea>
+                
+                
+            </div>
+            
+            <div class="form-group form-inline">
+              <label style = "width : 150px">Sports</label>
+                <textarea class="form-control" ng-model = "contacts.sports" size="25px"></textarea>
+                
+                
+            </div>
+            
+            <div class="form-group">
+               <center><button type="button" class="btn btn-primary" ng-click = "contactUpdate(contacts)">Update</button></center> 
+            </div>
+            
+        </div>
+        
+        <div ng-show = "life" class = "col-md-9">
+           
+           <div class="form-group form-inline">
+              <label style = "width : 150px">Life Event</label>
+               <select ng-model = "lifeEvent.type" id="selectYear" style="width:auto;" class="form-control">
+                            <option value ="New Job">new job</option>
+                            <option value ="Moved to">moved to</option>
+                            <option  value ="New School">new School</option>
+                        </select>
+                <input type="text" class="form-control" ng-model = "lifeEvent.message"  size="25px" placeholder ="message to share !">
+               
+               </div><br/><br/>
+                <div class="form-group">
+               <center><button class = "btn btn-primary" ng-click = "submitLifeEvent(lifeEvent)">Post</button></center>
+               </div>
+               <hr>
+               <div ng-repeat = "lifeevent in lifeevents">
+                   
+                   <h4>{{lifeevent.lifeEventType}}</h4>
+                   <p>{{lifeevent.lifeMessage}}</p>
+                        <hr>
+               
+                </div>
+                
+            
+            </div>
+            
+        </div>
+        
+    </div>  
+      
+    </div>
+  </div>
+    
+    <div class="modal fade" id="aboutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+          <form class = "form">
+          <div class="form-group form-inline">
+              <label style = "width : 150px">{{name}}</label>
+                <input type="text" class="form-control" ng-model = "form.name" id="group" size="25px">
+                
+                
+            </div>
+              
+              <div class="form-group form-inline" ng-if ="position">
+              <label style = "width : 150px">Position</label>
+                <input type="text" class="form-control" ng-model = "form.position" id="group" size="25px">
+                
+                
+            </div>
+              
+              <div class="form-group form-inline" ng-if ="city">
+              <label style = "width : 150px">city</label>
+                <input type="text" class="form-control" ng-model = "form.city" id="group" size="25px">
+                
+                
+            </div>
+              
+              <div class="form-group form-inline">
+                  <label style = "width : 150px">{{yearName}}</label>
+                <select ng-model = "form.yearSelected" id="selectYear" style="width:auto;" class="form-control">
+                            <option   ng-repeat = "i in numbers" value ="{{i}}">{{i}}</option>
+                        </select>
+            </div>
+              
+              <div ng-if = "concentration" class="form-group form-inline">
+                  <label style = "width : 150px">Concentration</label>
+                <input type="text" class="form-control" ng-model = "form.concentration" id="group" size="25px">
+            </div>
+              
+              <div ng-if = "attendFor" class="form-group form-inline">
+                  <label style = "width : 150px">Attended for</label>
+                <div class="radio" >
+                      <label><input class="form-control" ng-model = "form.typeOfDegree" type="radio" value = "College" name="typeOfDegree">College</label>
+                    </div>
+                    <div class="radio">
+                      <label><input class="form-control" ng-model = "form.typeOfDegree" value = "gradudate" type="radio" name="typeOfDegree">Grad School</label>
+                    </div>
+            </div>
+              
+              
+              
+                <div class="alert alert-danger" ng-if ="error" role="alert">Group Already Exists</div>
+              <div class="alert alert-success" ng-if = "success" role="alert"> Successfully Created</div>
+              </form>
+              
+      </div>
+            
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click = "clearModal()" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click = "updateEducation(form, activity)">Create</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    
+    
+</body>

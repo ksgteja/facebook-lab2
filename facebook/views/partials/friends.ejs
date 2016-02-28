@@ -1,0 +1,118 @@
+<H1>This is Friends Tab</H1>
+
+<div class = "well well-lg">
+    
+<div class = "row">
+    
+</div>
+<div class = "row">
+    
+    <div class = "col-md-4">
+    
+        
+        
+        <div class="panel panel-default">
+             <div class="panel-heading">Friends</div>
+            <div class="panel-body">
+                
+                <div  style="overflow-y:auto;height:200px;">
+  <ul class="list-group" >
+  <li ng-repeat = "friend in friends" class="list-group-item"><span style = "width : 40px">{{friend.first_name}}</span>  
+   </li>
+     
+                                                                                          
+</ul>
+         </div>           
+            </div>
+        </div>
+    
+    </div>
+    
+<div class = "col-md-5 col-md-offset-2" >
+        
+    
+    
+    
+        <div class="panel panel-default">
+             <div class="panel-heading">Friend Requests</div>
+            <div class="panel-body">
+                
+                <table class="table table-condensed">
+  
+                    <tr ng-repeat = "request in requests">
+                        <td><p>{{request.first_name}}</p></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" style="float: right;" data-toggle="dropdown">Action   
+                                <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href ng-click="handleFriendRequest(1,request._id, request.first_name)">Approve</a></li>
+                                         <li><a href ng-click="handleFriendRequest(2,request._id, request.first_name)">Reject</a></li>
+                                    </ul>
+                            </div> 
+                        
+                        
+                        </td>
+                    
+                    </tr>
+                    
+                    
+                </table>
+                
+  <!--              
+                
+  <ul class="list-group" >
+  <li ng-repeat = "request in requests" class="list-group-item"><span style = "width : 40px">{{request.name}}</span> 
+      <li class="list-group-item"><span style = "width : 40px">harish</span>
+          <li class="list-group-item"><span style = "width : 40px">sreeram</span> 
+              <li class="list-group-item"><span style = "width : 40px">teja</span> 
+                   
+  <button ng-click = "approve(member.user_id)" class = "btn btn-default" style="float: right;">Approve</button> 
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" style="float: right;" data-toggle="dropdown">app
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+  </ul>
+</div>
+   </li>
+</ul> -->
+            </div>
+        </div>
+        <div class="panel panel-default">
+             <div class="panel-heading">Add Friend</div>
+            <div class="panel-body">
+        <input  type = "text" placeholder = "Add Member" ng-model = "searchText" ng-change = "changeTrigger()"/>
+        <div class = "list-group">
+        <button  ng-repeat ="d in display" style="width:175px; text-align: left;" ng-click = "addFriend(d.id)" type="button" class="list-group-item">{{d.name}}</button>
+            
+                </div>
+            </div>
+        </div>
+        </div> 
+        
+        
+    </div> 
+    
+    <div class = "row">
+    
+       
+    
+    </div>
+    
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    
+    
+   
+    
+    
+    
+    
+    
+</div>
+    </div>

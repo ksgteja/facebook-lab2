@@ -1,0 +1,148 @@
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        
+    </head>
+<body ng-app ="facebook" ng-controller ="loginController">
+    <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+<div class = "container">
+    
+   <div class ="row">
+       <div class = "col-md-6">
+    
+    
+        <h1>facebook</h1>
+        
+    
+           </div>
+    <div class = "col-md-5"></div>
+        <form class="form-inline" name = "signin" role="form">
+    
+   <div class="form-group" >
+    <input type="email" class="form-control" name = "signinEmail" ng-model ="credentials.email" placeholder="email address" required>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name = "signinpassword" ng-model = "credentials.password" placeholder="Password" required>
+  </div>
+  
+  <button type="submit" ng-disabled = "signin.$invalid" ng-click = "login(credentials)" class="btn btn-primary">Submit</button>
+  
+</form>
+        
+    
+          </div>
+    </div>
+        </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <div class ="row"> 
+       <div class = "col-sm-6 col-sm-offset-6"><div style = "width : 40%" class="alert alert-danger" ng-cloak ng-if="loginError">
+						<p>{{loginMessage}}</p></div>
+  
+    </div>
+       </div>
+           <div class ="container">
+               <div class ="row">
+             <div class = "col-md-6">
+              
+                 <H2>Connect with friends and the
+world around you on Facebook.</H2>
+             
+             </div>
+               
+          
+             <div class = "col-md-6">
+                 
+                    <div class = "row">
+                        <div class ="col-md-4 col-md-offset-2">
+                               <h1>SignUp</h1>
+                        </div>
+                        
+                    </div>
+                    <div class = "row">
+                        <div class ="col-md-8 col-md-offset-2">
+                               <h4>It’s free and always will be.</h4>
+                            
+                        </div>
+                    </div>
+                 
+                    <div class = "row">
+                        <div class ="col-md-6 col-md-offset-4">
+                               <form role="form" name="myForm">
+                                    <div class="form-group">
+                                        <input type="text" ng-pattern = "/^[a-zA-Z ]+$/" placeholder = "first Name" ng-required="true" ng-model = "signup.firstName" name = "firstName" class="form-control">
+                                    </div>
+                                   <div class="form-group">
+                                        <input type="text" ng-pattern = "/^[a-zA-Z ]+$/" placeholder = "last Name"  ng-required="true" ng-model = "signup.lastName" class="form-control">
+                                       
+                                    </div>
+                                   <div class="form-group">
+                                        <input type="email" placeholder = "email address" ng-required="true" ng-model="signup.email" class="form-control" id="email">
+                                   </div>
+                                    <div class="form-group">
+                                        
+                                        <input type="password" placeholder = "password" ng-required="true" ng-model = "signup.password" class="form-control" id="pwd1">
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <input type="password" placeholder = "confirm password" ng-required="true" ng-model = "signup.confirmPass" class="form-control" id="pwd2">
+                                    </div>
+                                    
+                                   <div class="form-group">
+                                        <label>Birthday</label>
+                                        <input type="date" ng-required="true" ng-model = "signup.dob" class="form-control">
+                                    </div>
+                                   <div class="radio-inline">
+                                        <label><input type="radio" ng-required="true" ng-model = "signup.gender" value="male" name="gender">Male</label>
+                                        
+                                    </div>
+                                   <div class="radio-inline">
+                                        
+                                        <label><input type="radio" ng-required="true"  ng-model = "signup.gender" name="gender" value="female">Female</label>
+                                    </div>
+                                    <div class = "form-group">
+                                        
+                                        <center><button type="submit" ng-disabled = "myForm.$invalid" ng-click = "signupForm(signup)" class="btn btn-success btn-lg">Submit</button></center>
+                                        </div>
+                                </form>
+                            
+                            <div style = "width : 90%" ng-if = "signUpError" class="alert alert-danger" role="alert">{{signupMessage}}</div>
+                            <div style = "width : 90%" ng-if = "signUpSuccess" class="alert alert-success" role="alert">{{success}}</div>
+                            <div style = "width : 90%" ng-show = "myForm.firstName.$error.pattern" class="alert alert-danger" role="alert">Invalid first name</div>
+                            <div style = "width : 90%" ng-show = "myForm.lastName.$error.pattern" class="alert alert-danger" role="alert">Invalid last name</div>
+                            <div style = "width : 90%" ng-show = "signup.password != signup.confirmPass" class="alert alert-danger" role="alert">Passwords do not match</div>
+                            
+                            
+                            
+                        </div>
+                        
+                    </div>
+                 
+                    
+                    
+                    
+          
+              </div>
+                   </div>
+          </div>
+          <br/><br/><br/><br/>
+          <br/>
+        </div>
+        
+        </div>
+        
+    </div>
+    <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js"></script>
+    <script type = "text/javascript" src="/controllers/loginController.js"></script>
+    <script src = "../validations/loginValidations.js"></script>
+    
+</body>
+</html>

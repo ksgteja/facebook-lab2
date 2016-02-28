@@ -1,0 +1,202 @@
+<HEAD>
+
+    <meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="../stylesheets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src = "../controllers/mainController.js"></script>
+    <script src = "../controllers/testController.js"></script>
+    <script src = "../controllers/aboutController.js"></script>
+    <script src = "../controllers/viewGroupController.js"></script>
+    <script src = "../controllers/friendsController.js"></script>
+    <script src = "../controllers/newsFeedController.js"></script>
+    <script src = "https://code.angularjs.org/1.5.0-beta.1/angular-route.min.js"></script>
+    
+    
+</HEAD>
+<body  style="background-color : #dfe3ee" ng-app ="facebook" ng-controller = "mainController">
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >
+        <img src="../logo2.png"/>
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input style = "width :300px" type="text" ng-model ="textt" ng-change = "search()"  class="form-control" placeholder="Search">
+            {{result}}
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+        <form class="navbar-form navbar-right">
+        
+        
+        <button type="submit" style = "color : white; background : transparent; border : none" class="btn btn-default" ng-click = "logout()">Log out</button>
+            
+            
+        
+        </form>  
+        
+        
+        <form class="navbar-form navbar-left navbar-right">
+        
+        
+        <label style = "color: white; font-size: 20px; font-family: 'Tahoma'"><%= username %></label>
+        
+        
+        </form>  
+        
+         
+        
+        <ul class="nav navbar-nav navbar-right">
+        <li style = "color: white; font-size: 20px; " class="active"><a href = "{{home}}">Home</a></li>
+              
+        </ul>
+        <form class = "navbar-form navbar-left navbar-right">
+        
+        <div class="dropdown">
+    
+  <button style = "border:0px;outline:0px;color: black; background : transparent;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+     <!-- <span style = "font-size : 25px "class="glyphicon glyphicon-user"></span> -->
+      <span  class = "glyphicon"><img style = "height: 22px; width : 22px" src = "../users1.png"/></span>
+      <span style = "background-color : red " ng-if = "badgeDisplay" class="badge ng-cloak">{{badge}}</span>
+  </button>
+  <table class="table table-striped dropdown-menu" aria-labelledby="dropdownMenu1" style = "width : 400px ">
+  
+                    <tr ng-repeat = "request in requests">
+                        <td><p>{{request.first_name}}</p></td>
+                        <td>
+                            <div class="dropdown" ng-if ="buttons">
+                                
+                                <button class="btn btn-default" ng-click = "handleFriendRequest(1,request.senderId)" type="button" style="float: right;" data-toggle="dropdown">Delete Request   
+                                </button>
+                                <button class="btn btn-primary" ng-click="handleFriendRequest(1,request.senderId)" type="button" style="float: right;" data-toggle="dropdown">Confirm   
+                                </button>
+                            </div> 
+                        
+                        
+                        </td>
+                    
+                    </tr>
+      
+                    
+                </table>
+</div>
+        
+        </form>
+        
+        
+        
+        
+          
+    </div>
+    
+</nav>
+    
+    
+    
+    <div class="page-container">
+      
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <li><a href="#">Link 3</a></li>              
+            </ul><br><br><br>
+            <label>GROUPS</label>
+            
+            <div>
+            <ul class="nav" ng-repeat = "group in groups">
+                <li><a href="#/viewGroup/{{group.group_name}}">{{group.group_name}}</a></li>             
+              
+            </ul>
+            
+            </div>
+            <ul class ="nav">
+            <!-- <li class="active"><a href="#/createGroup"><strong>+Create Group</strong></a></li> -->
+                
+             <li class="active"><a href="#myModal" role="button" data-toggle="modal"><strong>+Create Group</strong></a></li>
+            </ul>
+          
+            
+        </div>
+          
+          <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Create Group</h4>
+      </div>
+      <div class="modal-body">
+          <form name="groupForm">
+          <div class="form-group">
+                <label for="group">Group Name</label>
+                <input type="text" class="form-control" ng-model = "groupName" id="group" size="10px" required>
+                
+            </div>
+              
+                <div class="alert alert-danger" ng-if ="error" role="alert">Group Already Exists</div>
+              <div class="alert alert-success" ng-if = "success" role="alert"> Successfully Created</div>
+              </form>
+              
+      </div>
+            
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click = "clearModal()" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-disabled = "groupForm.$invalid" ng-click = "createGroup(groupName)">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+          
+          <div class = "col-xs-5" >
+           <ul id = "navig" class="nav nav-pills nav-justified">
+            <li id = "navigFinished" role="presentation"><a ng-href="#/newsFeed">News Feed</a></li>
+            <li role="presentation"><a ng-href="#/about">About</a></li>
+            <li role="presentation"><a ng-href="#/friends">Friends</a></li>
+            </ul>
+              </div>
+          
+        <!-- main area -->
+        
+          
+        <div ng-view class="col-sm-12 col-sm-9">
+          
+            
+            
+        </div>
+          
+         
+    </div>
+        
+  </div><!--/.container-->
+</div><!--/.page-container-->
+    
+    <script>
+    
+          $('ul.nav.nav-pills li a').click(function() {           
+    $(this).parent().addClass('active').siblings().removeClass('active');  
+});
+    
+    </script>
+    </body>

@@ -1,0 +1,76 @@
+ <div class = "well well-lg" ng-init = "initLoad()">
+        
+        <div  class="panel panel-default">
+  <center><H4>{{groupName}}</H4></center>
+</div>
+    
+<div class = "row">
+    
+    
+</div>
+<div class = "row">
+    
+    <div class = "col-md-4">
+    
+        
+        
+        <div class="panel panel-default">
+             <div class="panel-heading">Members</div>
+            <div class="panel-body">
+  <ul class="list-group" >
+  <li ng-repeat = "member in members" class="list-group-item"><span style = "width : 40px">{{member.first_name}}</span>
+   <button ng-click = "deleteMember(member._id)" class = "btn btn-default" style="float: right;">Delete</button>   
+   </li>
+  
+</ul>
+            </div>
+        </div>
+    
+    </div>
+    
+    
+    
+    <div class = "col-md-4 col-md-offset-4" >
+        
+        <div class="panel panel-default">
+             <div class="panel-heading">Add Member</div>
+            <div class="panel-body">
+        <input  type = "text" placeholder = "Add Member" ng-model = "text" ng-change = "changeTrigger()"/>
+        <div class = "list-group">
+        <button  ng-repeat ="d in display" style="width:175px; text-align: left;" ng-click = "addMemberToGroup(d.id)" type="button" class="list-group-item">{{d.name}}</button>
+            
+                </div>
+            </div>
+        </div>
+        </div> 
+        
+        
+    </div> 
+    
+    <div class = "row">
+    
+        <div class = "col-md-4 col-md-offset-8">
+            
+            <button class ="btn btn-danger" ng-click="deleteGroup(groupName)"> Delete Group</button>
+            
+            
+        </div>
+    
+    </div>
+    
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    
+    
+   
+    
+    
+    
+    
+    
+</div>
+    </div>
